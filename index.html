@@ -110,15 +110,39 @@
     padding: 60px 25px;
     background: #181818;
     }
+        nav {
+    position: sticky;
+    top: 0;
+    background: #111;
+    padding: 15px;
+    z-index: 1000;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #00e5ff;
+}
     </style>
 </head>
 
 <body>
-
+<nav>
+    <a href="#">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+</nav>
     <section class="hero">
         <img src="myphoto.jpg" alt="Tanish">
         <h1>Hi, I'm <span>Tanish</span></h1>
-        <p>Student • Future Web Developer 🚀</p>
+        <p>Student • <span id="typing"></span></p>
         <a class="btn" href="#about">Explore My Portfolio</a>
     </section>
 
@@ -130,13 +154,13 @@
         </p>
     </section>
 
-    <section class="skills">
+    <section class="skills" id="skills">
         <h2>My Skills</h2>
         <div class="skill">HTML</div>
         <div class="skill">CSS</div>
         <div class="skill">Java</div>
         <div class="skill">Web Development</div>
-        <section class="projects">
+        <section class="projects" id="projects">
     <h2>My Projects</h2>
 
     <div class="project-card">
@@ -155,11 +179,33 @@
     </div>
 </section>
 
-<section class="contact">
+<section class="contact" id="contac">
     <h2>Contact Me</h2>
     <p>Thanks for visiting my portfolio! 👋</p>
 </section>
     </section>
+    <script>
+const text = ["Web Developer 💻", "Java Programmer ☕", "Future Developer 🚀"];
+let i = 0;
+let j = 0;
+
+function typeEffect() {
+    if (j < text[i].length) {
+        document.getElementById("typing").innerHTML += text[i][j];
+        j++;
+        setTimeout(typeEffect, 100);
+    } else {
+        setTimeout(() => {
+            document.getElementById("typing").innerHTML = "";
+            j = 0;
+            i = (i + 1) % text.length;
+            typeEffect();
+        }, 1500);
+    }
+}
+
+typeEffect();
+    </script>
 
 </body>
 </html>
